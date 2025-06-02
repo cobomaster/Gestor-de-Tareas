@@ -1,11 +1,229 @@
-body{
-    background-color: #f0f0f0;
-    margin: 0; /* Para que no tenga espacio en blanco alrededor */
+/* === ESTILOS BASE === */
+.formulario {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.hea{
-    background-color: aqua;
-    color: goldenrod;
-    text-align: center;
-    margin: 0;   
+.Titulo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.span {
+  display: block;
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 0.5rem;
+}
+
+.nombre,
+.categoria {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+.error {
+  color: #d8000c;
+  background-color: #ffd2d2;
+  border: 1px solid #d8000c;
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tarea {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-left: 6px solid #4caf50;
+  padding: 1rem;
+  margin: 0.8rem 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.tarea:hover {
+  transform: scale(1.01);
+}
+
+.tarea-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex-grow: 1;
+}
+
+.tarea-nombre {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.tarea-categoria {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.btnEliminar {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  margin-left: 1rem;
+}
+
+.btnEliminar:hover {
+  background-color: #c0392b;
+}
+
+.sinTarea {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+/* === MOVIL (Hasta 600px) === */
+@media (max-width: 600px) {
+  .formulario {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .Titulo {
+    font-size: 1.3rem;
+  }
+
+  .nombre,
+  .categoria {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .tarea {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .btnEliminar {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .tarea-nombre {
+    font-size: 1rem;
+  }
+
+  .tarea-categoria {
+    font-size: 0.85rem;
+  }
+}
+
+/* === TABLET (601px - 1024px) === */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .formulario {
+    max-width: 600px;
+    padding: 2rem;
+  }
+
+  .Titulo {
+    font-size: 1.6rem;
+  }
+
+  .nombre,
+  .categoria {
+    font-size: 1rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+  }
+
+  .tarea {
+    gap: 1rem;
+  }
+
+  .btnEliminar {
+    font-size: 0.95rem;
+  }
+}
+
+/* === PANTALLA GRANDE (Desde 1025px) === */
+@media (min-width: 1025px) {
+  .formulario {
+    max-width: 700px;
+  }
+
+  .Titulo {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    font-size: 1.1rem;
+  }
+
+  .tarea {
+    padding: 1.2rem;
+  }
+
+  .btnEliminar {
+    font-size: 1rem;
+  }
 }

@@ -1,10 +1,12 @@
 import { useState } from 'react';
 
-const FormularioTarea = ({ agregarTarea }) => {
+const FormularioTarea = ({ agregarTarea, TareaEditar, actualizarTarea }) => {
   const [formulario, setFormulario] = useState({
-    nombre: '',
-    categoria: '', // Lo agrego para que el select funcione correctamente
+    nombre: TareaEditar ? TareaEditar.nombre : '',
+    categoria: TareaEditar ? TareaEditar.categoria : '',
   });
+
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -12,30 +14,36 @@ const FormularioTarea = ({ agregarTarea }) => {
       ...prev,
       [name]: value,
     }));
+    setError('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formulario.nombre) {
-      alert('Por favor, completa los campos');
+
+    if (!formulario.nombre.trim()) {
+      setError('El nombre de la tarea es obligatorio');
       return;
     }
 
-    const nuevaTarea = {
-      id: Date.now(),
-      nombre: formulario.nombre,
-      categoria: formulario.categoria || 'sin categoría',
-      fecha: '',         // valores vacíos que podrías pedir después
-      hora: '',
-      descripcion: '',
-      prioridad: '',
-      estado: '',
-      usuario: '',
-    };
+    if (!formulario.categoria) {
+      setError('La categoría es obligatoria');
+      return;
+    }
 
-    agregarTarea(nuevaTarea);
+    if (TareaEditar) {
+      actualizarTarea({
+        ...TareaEditar,
+        nombre: formulario.nombre.trim(),
+        categoria: formulario.categoria,
+      });
+    } else {
+      agregarTarea({
+        id: crypto.randomUUID(), // Genera un ID único
+        nombre: formulario.nombre.trim(),
+        categoria: formulario.categoria,
+      });
+    }
 
-    // Reiniciar el formulario
     setFormulario({
       nombre: '',
       categoria: '',
@@ -44,7 +52,8 @@ const FormularioTarea = ({ agregarTarea }) => {
 
   return (
     <form onSubmit={handleSubmit} className="formulario">
-      <h2 className="Titulo">Agregar Tarea</h2>
+      <h2 className="Titulo">{TareaEditar ? 'Editar Tarea' : 'Agregar Tarea'}</h2>
+      {error && <p className="error">{error}</p>}
 
       <label className="label" htmlFor="nombre">
         Nombre de la Tarea
@@ -57,7 +66,8 @@ const FormularioTarea = ({ agregarTarea }) => {
         onChange={handleChange}
         className="nombre"
       />
-
+        <br/>
+        <br/>
       <label className="label" htmlFor="categoria">
         Categoría
       </label>
@@ -74,8 +84,11 @@ const FormularioTarea = ({ agregarTarea }) => {
         <option value="otro">Otro</option>
       </select>
 
+        <br/>
+        <br/>
+        
       <button type="submit" className="btn">
-        Agregar Tarea
+        {TareaEditar ? 'Actualizar Tarea' : 'Agregar Tarea'}
       </button>
     </form>
   );
