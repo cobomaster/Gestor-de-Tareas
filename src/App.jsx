@@ -1,14 +1,15 @@
-import './App.css'
+import './App.css';
+import FormularioTarea from './Formulario.jsx';
+import ListaTarea from './Lista.jsx';
 
 function App() {
 
   return (
     <>
-      <header className="header">
-        <h1> Hola </h1>
-        </header>
+        <h1 className="hea"> Gestor de Tareas </h1>
+        <ListaTarea />
     </>
   )
 }
 
-export default App
+export default App;
